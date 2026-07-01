@@ -1,0 +1,4 @@
+firecrawl-py
+groq
+pandas
+python-dotenv

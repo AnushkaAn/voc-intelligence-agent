@@ -1,0 +1,37 @@
+name: Weekly VoC Agent Run
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # every Monday at 6am UTC
+  workflow_dispatch:        # lets you trigger it manually too
+
+permissions:
+  contents: write   # required for the final "git push" step below —
+                     # GitHub repos default this token to read-only
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the VoC agent (full weekly cycle via tool-calling)
+        run: python voc_agent.py
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+      - name: Commit updated database and reports
+        run: |
+          git config user.name "voc-agent-bot"
+          git config user.email "voc-agent-bot@users.noreply.github.com"
+          git add voc_reviews.db reports/
+          git diff --cached --quiet || git commit -m "Weekly VoC agent run: $(date -u +'%Y-%m-%d')"
+          git push
