@@ -54,7 +54,7 @@ PRODUCT_NAMES = {v["product_id"]: k for k, v in PRODUCTS.items()}
 # Safety cap only — the real stop condition is "identical page = no more
 # reviews". Raised from 10 -> 60 so we actually exhaust what Flipkart has,
 # instead of silently capping volume early.
-MAX_PAGES_PER_PRODUCT = 60
+MAX_PAGES_PER_PRODUCT = 12
 
 ALLOWED_THEMES = [
     "Sound Quality", "Battery Life", "Comfort/Fit", "App Experience",
@@ -211,7 +211,7 @@ If nothing matches, use an empty list for themes."""
     for attempt in range(max_retries):
         try:
             response = groq_client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="llama-3.1-8b-instant",
                 messages=[{"role": "user", "content": prompt}],
                 response_format={"type": "json_object"},
                 temperature=0.2,
@@ -416,7 +416,7 @@ Using ONLY the data above, write a Markdown "Global Action Item Report" with exa
 
 Be specific — name themes explicitly and say which product each item applies to. No generic filler."""
     resp = groq_client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.3,
     )
@@ -435,7 +435,7 @@ def tool_generate_weekly_delta_report():
     try:
         delta_df = pd.read_csv(DELTA_LOG_PATH)
         print(f"📝 Found {len(delta_df)} new reviews in delta log")
-    except FileNotFoundError:
+    except (FileNotFoundError, pd.errors.EmptyDataError):
         delta_df = pd.DataFrame()
         print("📝 No delta log found - no new reviews")
     
@@ -452,7 +452,7 @@ Write a short Markdown "Weekly Delta Action Item Report" that:
 
 Do not invent data beyond what's shown above."""
     resp = groq_client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.3,
     )
@@ -494,7 +494,7 @@ QUESTION: {question}
 
 Give a clear answer, referencing specific themes/sentiment patterns from the data."""
     resp = groq_client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.2,
     )
@@ -566,7 +566,7 @@ def run_agent(user_instruction, max_rounds=8):
     for round_num in range(max_rounds):
         print(f"\n🔄 Agent round {round_num + 1}/{max_rounds}")
         response = groq_client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             messages=messages,
             tools=TOOLS_SPEC,
             tool_choice="auto",
@@ -580,7 +580,7 @@ def run_agent(user_instruction, max_rounds=8):
 
         for tool_call in msg.tool_calls:
             fn_name = tool_call.function.name
-            fn_args = json.loads(tool_call.function.arguments or "{}")
+            fn_args = json.loads(tool_call.function.arguments or "{}") or {}
             print(f"🤖 Agent calling tool: {fn_name}({fn_args})")
             result = AVAILABLE_FUNCTIONS[fn_name](**fn_args)
             messages.append({"role": "tool", "tool_call_id": tool_call.id, "content": result})

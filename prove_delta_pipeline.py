@@ -77,9 +77,10 @@ def prove_delta_pipeline():
               f"re-detected as NEW and re-inserted.")
 
         if recaptured_ids:
+            recaptured_placeholders = ",".join("?" for _ in recaptured_ids)
             df = pd.read_sql_query(
-                f"SELECT * FROM reviews WHERE review_id IN ({placeholders})",
-                conn, params=recaptured_ids,
+                   f"SELECT * FROM reviews WHERE review_id IN ({recaptured_placeholders})",
+                   conn, params=recaptured_ids,
             )
             df["proof_note"] = "recaptured_in_controlled_delta_test"
             df.to_csv(DELTA_LOG_PATH, index=False)
