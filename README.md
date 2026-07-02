@@ -91,16 +91,5 @@ This overwrites `reports/delta_proof_log.csv` with the recaptured rows,
 each tagged `proof_note = recaptured_in_controlled_delta_test` for full
 transparency about the test methodology.
 
-## Before submitting / packaging
-Rotate your API keys first if you ever committed a real `.env` (see
-`SUBMIT_CHECKLIST.md`). Then run the whole finishing sequence in one shot:
-```
-cp .env.example .env   # paste your real (new) keys
-pip install -r requirements.txt
-./finish_and_verify.sh
-```
-This scrapes, tags, generates both reports, runs the delta proof, and then
-verifies every deliverable is internally consistent — DB tagging, delta
-log, reports, docs, git repo — printing PASS/FAIL for each. Don't zip or
-push until it prints `✅ ALL CHECKS PASSED`. Full details in
-`SUBMIT_CHECKLIST.md`.
+
+
