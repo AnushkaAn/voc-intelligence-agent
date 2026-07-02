@@ -36,6 +36,7 @@ groq_client = Groq(api_key=GROQ_API_KEY)
 
 DB_PATH = "voc_reviews.db"
 DELTA_LOG_PATH = "reports/delta_proof_log.csv"
+WEEKLY_DELTA_PATH = "reports/weekly_new_reviews_log.csv"
 GLOBAL_REPORT_PATH = "reports/Global_Action_Item_Report.md"
 WEEKLY_REPORT_PATH = "reports/Weekly_Delta_Action_Item_Report.md"
 
@@ -332,9 +333,10 @@ def tool_detect_weekly_delta():
                                       "review_id": review_id, "is_simulated": False})
 
     delta_df = pd.DataFrame(new_rows)
-    delta_df.to_csv(DELTA_LOG_PATH, index=False)
+    if len(delta_df) > 0:
+        delta_df.to_csv(WEEKLY_DELTA_PATH, index=False)
     print(f"\n✅ Found {len(new_rows)} genuinely new reviews in delta check")
-    return json.dumps({"genuinely_new_reviews_found": len(new_rows), "log_file": DELTA_LOG_PATH})
+    return json.dumps({"genuinely_new_reviews_found": len(new_rows), "log_file": WEEKLY_DELTA_PATH})
 
 
 def tool_tag_untagged_reviews():
@@ -433,7 +435,7 @@ def tool_generate_weekly_delta_report():
     print("="*60)
     
     try:
-        delta_df = pd.read_csv(DELTA_LOG_PATH)
+        delta_df = pd.read_csv(WEEKLY_DELTA_PATH)
         print(f"📝 Found {len(delta_df)} new reviews in delta log")
     except (FileNotFoundError, pd.errors.EmptyDataError):
         delta_df = pd.DataFrame()
@@ -582,7 +584,15 @@ def run_agent(user_instruction, max_rounds=8):
             fn_name = tool_call.function.name
             fn_args = json.loads(tool_call.function.arguments or "{}") or {}
             print(f"🤖 Agent calling tool: {fn_name}({fn_args})")
-            result = AVAILABLE_FUNCTIONS[fn_name](**fn_args)
+            try:
+                result = AVAILABLE_FUNCTIONS[fn_name](**fn_args)
+            except TypeError as e:
+                print(f"      ⚠️ Bad tool arguments ({e}) — retrying with no arguments...")
+                try:
+                    result = AVAILABLE_FUNCTIONS[fn_name]()
+                except Exception as e2:
+                    print(f"      ❌ Skipping this tool call: {e2}")
+                    result = json.dumps({"error": str(e2)})
             messages.append({"role": "tool", "tool_call_id": tool_call.id, "content": result})
 
     print("⚠️ Agent stopped after max tool-call rounds.")
@@ -619,12 +629,7 @@ if __name__ == "__main__":
         print("✅ Pipeline Complete!")
         print("="*60)
 
-        print("\n--- Sample grounded query (PRD example) ---")
-        result2 = run_agent(
-            "Answer this question only, do not run other tools: What does "
-            "MasterBudsMax do better than MasterBuds on comfort and ANC?"
-        )
-        print(result2)
+        
     finally:
         conn.commit()
 

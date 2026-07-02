@@ -1,31 +1,42 @@
-**Global Action Item Report**
+## Global Action Item Report
 
 ### For Product Team
 
-Based on the customer review data, the following specific hardware/software issues need to be addressed:
+#### MasterBuds: Noise Cancellation and Sound Quality Issues
 
-1. **Improve Noise Cancellation Performance**: The MasterBuds product has a recurring complaint about noise cancellation not working properly, with some customers even calling it "too bad". This suggests that the noise cancellation technology needs to be improved to meet customer expectations.
-2. **Enhance Sound Quality Consistency**: The MasterBudsMax product has a complaint about sound quality being good in some songs but poor in others, with the mids overpowering the bass. This suggests that the sound quality algorithm needs to be refined to provide a more consistent listening experience.
-3. **Address Battery Life and Charging Issues**: The MasterBuds product has a complaint about the battery life being too short, with some customers mentioning that it only lasts 30 minutes. Additionally, some customers are disappointed with the fast charging feature, which suggests that the battery life and charging system need to be improved.
-4. **Improve Build Quality and Durability**: The MasterBuds product has a complaint about the product being "waste" and having a "bad" build quality. This suggests that the product needs to be designed with more durable materials and a more robust build quality.
-5. **Enhance Design and Comfort**: The MasterBuds product has a complaint about the product not feeling "premium" and having a design that is not comfortable for long hours of use. This suggests that the design and comfort of the product need to be improved to meet customer expectations.
+1. **Improve Noise Cancellation Algorithm**: Address the issue of noise cancellation not working properly, as reported by multiple customers. This could involve refining the algorithm or adjusting the hardware to better capture and eliminate ambient noise.
+2. **Enhance Sound Quality**: Investigate the complaints about sound quality not being competitive with JBL and Sony, and the lack of a premium feel. This could involve tweaking the audio drivers or adjusting the EQ settings to provide a more balanced and immersive sound experience.
+3. **Address Battery Life and Charging Issues**: Fix the problem with earbuds only lasting 30 minutes, as reported by one customer. This could involve optimizing the battery life or improving the charging speed to provide a more seamless listening experience.
+
+#### MasterBudsMax: Sound Quality and Build Quality Concerns
+
+1. **Refine Sound Quality**: Address the issue of sound quality being poor in certain tracks, as reported by one customer. This could involve adjusting the audio drivers or EQ settings to provide a more balanced and immersive sound experience.
+2. **Improve Build Quality**: Investigate the complaint about the earbuds cushion being eaten by ants, as reported by one customer. This could involve using more durable materials or adjusting the design to prevent pests from accessing the earbuds.
 
 ### For Marketing Team
 
-Based on the customer review data, the following specific messaging angles should be leaned into:
+#### MasterBuds: Leverage Customer Praise for Sound Quality and Design
 
-1. **Emphasize Premium Sound Quality**: The MasterBudsMax product has a high number of positive reviews praising its sound quality, with some customers even comparing it to Bose. This suggests that the marketing team should emphasize the premium sound quality of the product.
-2. **Highlight Fast Charging and Battery Life**: The MasterBuds product has a positive review praising its fast charging feature and battery life, with some customers mentioning that it lasts up to 3 days. This suggests that the marketing team should highlight these features as selling points.
-3. **Emphasize Comfort and Design**: The MasterBuds product has a positive review praising its comfortable design and fit, with some customers mentioning that it is perfect for long hours of use. This suggests that the marketing team should emphasize the comfort and design of the product.
-4. **Highlight Connectivity and Pairing**: The MasterBudsMax product has a positive review praising its seamless connectivity and pairing feature. This suggests that the marketing team should highlight these features as selling points.
-5. **Emphasize Value for Money**: The MasterBuds product has a positive review praising its value for money, with some customers mentioning that it is worth the price. This suggests that the marketing team should emphasize the value for money of the product.
+1. **Emphasize Deep Bass and Immersive Sound Experience**: Highlight the praise from customers about the earbuds delivering crisp sound quality with deep bass, perfect for music lovers.
+2. **Focus on Comfort and Build Quality**: Emphasize the comfort and build quality of the earbuds, as praised by customers for being premium and long-lasting.
+3. **Highlight Quick Charging and Battery Life**: Highlight the convenience of fast charging and the impressive battery life, as praised by customers for lasting through the day without needing frequent charging.
+
+#### MasterBudsMax: Leverage Customer Praise for Sound Quality and Features
+
+1. **Emphasize Balanced Audio Experience**: Highlight the praise from customers about the earbuds delivering a premium, balanced audio experience with clear and adaptive sound across all frequencies.
+2. **Focus on Superior Sound Quality**: Emphasize the praise from customers about the earbuds having the best sound quality in their price segment, with crystal-clear and uninterrupted sound.
+3. **Highlight Build Quality and Design**: Emphasize the praise from customers about the build quality and design of the earbuds, with some customers comparing them favorably to Sony and Bose.
 
 ### For Support Team
 
-Based on the customer review data, the following specific troubleshooting guide topics should be covered:
+#### MasterBuds: Troubleshooting Guide Topics
 
-1. **Troubleshooting Noise Cancellation Issues**: The MasterBuds product has a recurring complaint about noise cancellation not working properly. The support team should have a troubleshooting guide that helps customers resolve this issue.
-2. **Resolving Sound Quality Issues**: The MasterBudsMax product has a complaint about sound quality being good in some songs but poor in others. The support team should have a troubleshooting guide that helps customers resolve this issue.
-3. **Fixing Battery Life and Charging Issues**: The MasterBuds product has a complaint about the battery life being too short and the fast charging feature not working properly. The support team should have a troubleshooting guide that helps customers resolve this issue.
-4. **Addressing Build Quality and Durability Issues**: The MasterBuds product has a complaint about the product being "waste" and having a "bad" build quality. The support team should have a troubleshooting guide that helps customers resolve this issue.
-5. **Resolving Design and Comfort Issues**: The MasterBuds product has a complaint about the product not feeling "premium" and having a design that is not comfortable for long hours of use. The support team should have a troubleshooting guide that helps customers resolve this issue.
+1. **Troubleshooting Noise Cancellation Issues**: Create a guide to help customers troubleshoot noise cancellation issues, including steps to reset the earbuds or adjust the noise cancellation settings.
+2. **Addressing Sound Quality Concerns**: Create a guide to help customers troubleshoot sound quality issues, including steps to adjust the EQ settings or reset the earbuds.
+3. **Fixing Battery Life and Charging Issues**: Create a guide to help customers troubleshoot battery life and charging issues, including steps to reset the earbuds or adjust the charging settings.
+
+#### MasterBudsMax: Troubleshooting Guide Topics
+
+1. **Troubleshooting Sound Quality Issues**: Create a guide to help customers troubleshoot sound quality issues, including steps to adjust the EQ settings or reset the earbuds.
+2. **Addressing Build Quality Concerns**: Create a guide to help customers troubleshoot build quality issues, including steps to clean or replace the earbuds cushion.
+3. **Fixing Connectivity Issues**: Create a guide to help customers troubleshoot connectivity issues, including steps to reset the earbuds or adjust the Bluetooth settings.

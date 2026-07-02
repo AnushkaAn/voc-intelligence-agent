@@ -16,7 +16,8 @@ sign-in wall blocked scraping — an explicitly allowed data source per the PRD)
 
 ## Tech Stack
 - **Scraping:** Firecrawl
-- **Sentiment/Theme tagging + agent orchestration:** Groq API (Llama 3.3 70B, tool-calling)
+- **Sentiment/Theme tagging:** Groq API (Llama 3.1 8B Instant — higher free daily token budget for high-volume tagging)
+- **Report generation, Q&A, and agent orchestration:** Groq API (Llama 3.3 70B, tool-calling — better quality, used only for the small number of non-tagging calls)
 - **Storage:** SQLite (`voc_reviews.db`)
 - **Scheduling:** GitHub Actions (weekly cron, auto-commits results back to the repo)
 
@@ -41,7 +42,8 @@ decides which tools to call and in what order — this satisfies the PRD's
 ## Files
 - `voc_agent.py` — the agent: parsing, tools, and the tool-calling loop
 - `voc_reviews.db` — the review database (includes `sentiment`/`themes` columns)
-- `reports/delta_proof_log.csv` — genuine new-review detections from re-scraping (not simulated)
+- `reports/delta_proof_log.csv` — the official Requirement 1.3 proof (from `prove_delta_pipeline.py`): real, previously-stored reviews temporarily removed, then correctly re-detected and re-inserted as new
+- `reports/weekly_new_reviews_log.csv` — feeds the Weekly Delta Report on each normal run; kept separate from the file above so a normal run can never overwrite your Requirement 1.3 proof
 - `reports/Global_Action_Item_Report.md` — all-time action items by team
 - `reports/Weekly_Delta_Action_Item_Report.md` — this week's new-review insights
 - `SOUL.md` — agent personality/instructions
@@ -55,8 +57,11 @@ decides which tools to call and in what order — this satisfies the PRD's
   not an artificial cap.
 - Amazon.in blocks scraper bots behind a sign-in wall even with stealth proxy
   mode; Flipkart was used instead, per the PRD's "Amazon and/or Flipkart" allowance.
-- Groq's free tier (14,400 requests/day) is used for tagging and agent
-  orchestration to complete within the sprint timeline.
+- Groq's free tier is split across two models: Llama 3.1 8B for the ~180
+  repetitive tagging calls (500,000 tokens/day budget), and Llama 3.3 70B for
+  report generation, Q&A, and orchestration. This was necessary after
+  Llama 3.3 70B's much smaller 100,000 tokens/day cap was exhausted partway
+  through tagging under a single-model setup.
 
 ## Usage
 `python voc_agent.py` triggers `run_agent()`, which is also what the weekly

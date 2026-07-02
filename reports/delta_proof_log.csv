@@ -1,1 +1,7 @@
-
+review_id,product_id,rating,title,text,reviewer_name,location,date_relative,date,scraped_at,sentiment,themes,proof_note
+128a6e7cf09abbbacabfaefd58a64824,itm6cb40e9367c08,5.0,Great product,Very good product,Argha Das,New Town,1 month ago,2026-06-02,2026-07-02 13:18:03,Positive,Sound Quality,recaptured_in_controlled_delta_test
+33bab0e32e6635f9fd88de11608d224b,itm6cb40e9367c08,1.0,Waste of money!,Very bad product,Pindi Chandrashekar,Warangal,3 months ago,2026-04-03,2026-07-02 13:18:03,Negative,,recaptured_in_controlled_delta_test
+417692db2ffc3a0a95867dd3e1907dc3,itm6cb40e9367c08,5.0,Terrific purchase,"Wonderful sound tuned by Bose audio.
+Hi go for it.",Enjoy the music,,4 months ago,2026-03-04,2026-07-02 13:18:03,Positive,Sound Quality,recaptured_in_controlled_delta_test
+41a9f0cac470a97ce29e82745215b6d8,itm6cb40e9367c08,5.0,Terrific,awesome product lovely,Shubham Mahla,Nissing,5 months ago,2026-02-02,2026-07-02 13:18:03,Positive,Sound Quality,recaptured_in_controlled_delta_test
+9c2c941091d02be1945457ae33aa9843,itm6cb40e9367c08,1.0,Useless product,Bad product,Manish Verma,Ghaziabad,8 months ago,2025-11-04,2026-07-02 13:18:03,Negative,,recaptured_in_controlled_delta_test
