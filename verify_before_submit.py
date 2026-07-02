@@ -32,12 +32,17 @@ check(".env.example exists as a template", os.path.exists(".env.example"))
 check("No stray voc_reviews.db-journal file", not os.path.exists("voc_reviews.db-journal"))
 
 # 3. DB fully tagged
+# 3. DB fully tagged
 if os.path.exists("voc_reviews.db"):
     c = sqlite3.connect("voc_reviews.db")
     total = c.execute("SELECT COUNT(*) FROM reviews").fetchone()[0]
     tagged = c.execute("SELECT COUNT(*) FROM reviews WHERE sentiment IS NOT NULL").fetchone()[0]
     check("Database has reviews", total > 0, f"{total} rows")
     check("Every review is tagged (sentiment/themes)", tagged == total, f"{tagged}/{total} tagged")
+
+    blank = c.execute("SELECT COUNT(*) FROM reviews WHERE themes IS NULL OR themes = ''").fetchone()[0]
+    check("Every review has a non-empty theme", blank == 0, f"{blank} blank")
+
     c.close()
 else:
     check("voc_reviews.db exists", False)
@@ -80,3 +85,5 @@ if FAILS:
 else:
     print("✅ ALL CHECKS PASSED — safe to zip/push.")
     sys.exit(0)
+    
+
