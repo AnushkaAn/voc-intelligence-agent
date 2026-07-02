@@ -1,7 +1,7 @@
 # Demo — Voice of Customer (VoC) Intelligence Agent
 
 ## Video Walkthrough
-🎥 [Watch the demo video here](PASTE_YOUR_LOOM_LINK_HERE)
+🎥 [Watch the demo video here](https://drive.google.com/file/d/1CqLigjOv5RtwAocqfmiBPsUATu7d8dvR/view?usp=sharing)
 
 The video covers:
 1. Repo structure and deliverables
