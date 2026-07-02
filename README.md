@@ -29,7 +29,7 @@ sign-in wall blocked scraping — an explicitly allowed data source per the PRD)
 6. Scraped every page Flipkart exposes for the two target listings until the
    scraper hit a repeated page (i.e. no artificial cap — this is the actual
    ceiling of what's publicly available for these two specific products, not
-   a corner cut). Final counts: 138 reviews for MasterBuds, 39 for
+   a corner cut). Final counts: 140 reviews for MasterBuds, 39 for
    MasterBudsMax — well under the PRD's 500–1,000/product target. MasterBuds
    Max is a newer listing (launched several months after MasterBuds), which
    likely explains part of the gap, but this hasn't been independently
@@ -117,6 +117,27 @@ python prove_delta_pipeline.py
 This overwrites `reports/delta_proof_log.csv` with the recaptured rows,
 each tagged `proof_note = recaptured_in_controlled_delta_test` for full
 transparency about the test methodology.
+
+## Amazon Scraping — Attempts & Findings
+
+In addition to the working Flipkart pipeline, three separate attempts were made to
+also scrape Amazon.in reviews, using three different bypass techniques:
+
+1. **Firecrawl (stealth-mode shared proxies)** — blocked by Amazon's sign-in wall.
+2. **ScraperAPI (premium residential proxies + JS rendering)** — also blocked by
+   Amazon's sign-in wall; the response returned Amazon's generic page shell with
+   no review content present.
+3. **ZenRows (premium residential proxies + JS rendering)** — blocked at the
+   provider level before the request even reached Amazon (`REQS001: Requests to
+   this domain are forbidden`), suggesting ZenRows applies its own policy
+   restriction to major e-commerce domains like Amazon.
+
+All three are commercial-grade tools built specifically to bypass anti-bot systems
+on major retail sites. Two were stopped by Amazon's own sign-in wall; the third
+was stopped before reaching Amazon at all. This points to Amazon.in enforcing
+account sign-in for review access at an infrastructure level that isn't solvable
+with free-tier scraping tools in this timeframe. Flipkart was used as the primary
+data source instead, per the PRD's explicit "Amazon and/or Flipkart" allowance.
 
 
 

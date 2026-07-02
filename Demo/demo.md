@@ -42,13 +42,13 @@ to decide autonomously which pipeline steps to run.
   wall blocked scraping, even with a stealth proxy. The PRD explicitly allows
   "Amazon and/or Flipkart."
 - Switched sentiment-tagging from Llama 3.3 70B to Llama 3.1 8B after hitting the
-  70B model's 100,000-tokens-per-day free tier cap partway through tagging 180
+  70B model's 100,000-tokens-per-day free tier cap partway through tagging 179
   reviews. Also tried 70B for report generation, Q&A, and orchestration, but
   the free-tier rate limit stalls that model after ~2 calls in a multi-step
   agent loop — so Llama 3.1 8B Instant is used for every call in the pipeline
   instead, trading some report-writing polish for a pipeline that actually
   completes end-to-end within the free tier.
-- Data volume fell short of the PRD's 500-1,000/product target: 138 reviews
+- Data volume fell short of the PRD's 500-1,000/product target: 140 reviews
   for MasterBuds and 39 for MasterBudsMax, scraped from Flipkart's public
   review pages until the scraper hit a repeated page (i.e. exhausted
   everything publicly available for these two specific listings — not an
@@ -58,3 +58,24 @@ to decide autonomously which pipeline steps to run.
   problem independently rather than an approval to lower the volume target.
   Flipkart was used instead, which the PRD explicitly allows ("Amazon
   and/or Flipkart").
+
+  ## Amazon Scraping — Attempts & Findings
+
+In addition to the working Flipkart pipeline, three separate attempts were made to
+also scrape Amazon.in reviews, using three different bypass techniques:
+
+1. **Firecrawl (stealth-mode shared proxies)** — blocked by Amazon's sign-in wall.
+2. **ScraperAPI (premium residential proxies + JS rendering)** — also blocked by
+   Amazon's sign-in wall; the response returned Amazon's generic page shell with
+   no review content present.
+3. **ZenRows (premium residential proxies + JS rendering)** — blocked at the
+   provider level before the request even reached Amazon (`REQS001: Requests to
+   this domain are forbidden`), suggesting ZenRows applies its own policy
+   restriction to major e-commerce domains like Amazon.
+
+All three are commercial-grade tools built specifically to bypass anti-bot systems
+on major retail sites. Two were stopped by Amazon's own sign-in wall; the third
+was stopped before reaching Amazon at all. This points to Amazon.in enforcing
+account sign-in for review access at an infrastructure level that isn't solvable
+with free-tier scraping tools in this timeframe. Flipkart was used as the primary
+data source instead, per the PRD's explicit "Amazon and/or Flipkart" allowance.
