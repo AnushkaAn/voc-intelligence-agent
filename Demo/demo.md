@@ -43,7 +43,18 @@ to decide autonomously which pipeline steps to run.
   "Amazon and/or Flipkart."
 - Switched sentiment-tagging from Llama 3.3 70B to Llama 3.1 8B after hitting the
   70B model's 100,000-tokens-per-day free tier cap partway through tagging 180
-  reviews. Report generation and Q&A still use Llama 3.3 70B, since those are a
-  handful of calls, not 180, and benefit from the stronger model's quality.
-- Limited scraping to 10-12 pages per product (~100-150 reviews) per direct
-  guidance from the recruiter, rather than the PRD's default 500-1,000/product.
+  reviews. Also tried 70B for report generation, Q&A, and orchestration, but
+  the free-tier rate limit stalls that model after ~2 calls in a multi-step
+  agent loop — so Llama 3.1 8B Instant is used for every call in the pipeline
+  instead, trading some report-writing polish for a pipeline that actually
+  completes end-to-end within the free tier.
+- Data volume fell short of the PRD's 500-1,000/product target: 138 reviews
+  for MasterBuds and 39 for MasterBudsMax, scraped from Flipkart's public
+  review pages until the scraper hit a repeated page (i.e. exhausted
+  everything publicly available for these two specific listings — not an
+  artificial page cap). Amazon was the intended second source, but its
+  bot-detection sign-in wall blocked scraping even with a stealth proxy;
+  when raised with the recruiter, the guidance was to solve the scraping
+  problem independently rather than an approval to lower the volume target.
+  Flipkart was used instead, which the PRD explicitly allows ("Amazon
+  and/or Flipkart").

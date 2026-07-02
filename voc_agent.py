@@ -219,7 +219,10 @@ If nothing matches, use an empty list for themes."""
             )
             result = json.loads(response.choices[0].message.content)
             sentiment = result.get("sentiment", "Neutral")
+            if sentiment not in ("Positive", "Negative", "Neutral"):
+                sentiment = "Neutral"  # clamp to PRD Req 2.2's exact 3 values
             themes = result.get("themes", [])
+            themes = [t for t in themes if t in ALLOWED_THEMES]  # clamp to PRD Req 2.3's list
             return sentiment, ", ".join(themes)
         except Exception as e:
             print(f"      ⚠️ Tagging attempt {attempt+1} failed: {e}")

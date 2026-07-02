@@ -14,10 +14,32 @@ in `voc_agent.py`), not manual script execution.
 Flipkart public review pages (pivoted from Amazon after Amazon's bot-detection
 sign-in wall blocked scraping — an explicitly allowed data source per the PRD).
 
+## Development Journey (what was actually tried, in order)
+1. **Started with Amazon.in** as the primary data source, since it was the
+   first option listed in the PRD.
+2. **Amazon blocked scraping** behind a bot-detection sign-in wall. A stealth
+   proxy was tried and still failed to get past it.
+3. This was raised with the recruiter. The response was to solve the scraping
+   problem independently — not an approval to lower the review-volume target.
+   Amazon was not usable within the sprint timeframe with the tools available.
+4. **Pivoted to Flipkart** — the PRD's explicitly stated alternative
+   ("Amazon and/or Flipkart") — using Firecrawl to fetch review pages.
+5. Built the full pipeline against Flipkart: scraping, dedup, SQLite storage,
+   LLM tagging, report generation, and grounded Q&A.
+6. Scraped every page Flipkart exposes for the two target listings until the
+   scraper hit a repeated page (i.e. no artificial cap — this is the actual
+   ceiling of what's publicly available for these two specific products, not
+   a corner cut). Final counts: 138 reviews for MasterBuds, 39 for
+   MasterBudsMax — well under the PRD's 500–1,000/product target. MasterBuds
+   Max is a newer listing (launched several months after MasterBuds), which
+   likely explains part of the gap, but this hasn't been independently
+   confirmed against Flipkart's own rating count for that listing.
+7. This is submitted as the actual, working result of that process — not a
+   from-scratch redo, and not a claim that the volume target was met.
+
 ## Tech Stack
 - **Scraping:** Firecrawl
-- **Sentiment/Theme tagging:** Groq API (Llama 3.1 8B Instant — higher free daily token budget for high-volume tagging)
-- **Report generation, Q&A, and agent orchestration:** Groq API (Llama 3.3 70B, tool-calling — better quality, used only for the small number of non-tagging calls)
+- **Sentiment/theme tagging, report generation, Q&A, and agent orchestration:** Groq API (Llama 3.1 8B Instant, tool-calling). A larger model (Llama 3.3 70B) was tried for report/Q&A/orchestration calls for quality, but Groq's free-tier rate limit on that model stalls after ~2 calls, which breaks the multi-step agent loop mid-run. Llama 3.1 8B Instant has a much higher free daily budget and handles tool-calling reliably, so it's used for every call in this pipeline.
 - **Storage:** SQLite (`voc_reviews.db`)
 - **Scheduling:** GitHub Actions (weekly cron, auto-commits results back to the repo)
 
@@ -35,9 +57,13 @@ sign-in wall blocked scraping — an explicitly allowed data source per the PRD)
 This single command runs the full weekly cycle **through the agent's
 tool-calling loop**: scrape & store new reviews → tag untagged reviews →
 detect & log the weekly delta → generate the Global report → generate the
-Weekly Delta report → answer the PRD's sample grounded question. The LLM
-decides which tools to call and in what order — this satisfies the PRD's
-"Architecture Shift" requirement (all steps executed via tool-use).
+Weekly Delta report. The LLM decides which tools to call and in what order —
+this satisfies the PRD's "Architecture Shift" requirement (all steps executed
+via tool-use).
+
+Conversational Q&A (Requirement 4.2) is a separate, on-demand tool call —
+see "Usage" below — not part of the automated weekly run, since a scheduled
+job has no question to ask. It's demoed separately in the Loom video.
 
 ## Files
 - `voc_agent.py` — the agent: parsing, tools, and the tool-calling loop
@@ -57,11 +83,12 @@ decides which tools to call and in what order — this satisfies the PRD's
   not an artificial cap.
 - Amazon.in blocks scraper bots behind a sign-in wall even with stealth proxy
   mode; Flipkart was used instead, per the PRD's "Amazon and/or Flipkart" allowance.
-- Groq's free tier is split across two models: Llama 3.1 8B for the ~180
-  repetitive tagging calls (500,000 tokens/day budget), and Llama 3.3 70B for
-  report generation, Q&A, and orchestration. This was necessary after
-  Llama 3.3 70B's much smaller 100,000 tokens/day cap was exhausted partway
-  through tagging under a single-model setup.
+- Llama 3.3 70B was tried for report generation, Q&A, and agent orchestration,
+  but Groq's free tier caps that model at 100,000 tokens/day, which the
+  multi-step agent loop exhausts after ~2 calls. Llama 3.1 8B Instant (500,000
+  tokens/day free budget) is used for every call in the pipeline instead —
+  tagging, reports, Q&A, and orchestration — so the full weekly run completes
+  reliably without hitting rate limits mid-cycle.
 
 ## Usage
 `python voc_agent.py` triggers `run_agent()`, which is also what the weekly
