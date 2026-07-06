@@ -1,50 +1,41 @@
-**Global Action Item Report**
+## Global Action Item Report
 
 ### For Product Team
 
 #### MasterBuds Issues to Fix
 
-1. **Noise Cancellation Not Working Properly**: Improve the noise cancellation algorithm to ensure it works consistently across various environments and frequencies.
-2. **Connectivity Issues**: Enhance the earbuds' connectivity features to reduce the time it takes to connect with devices, as some customers experienced hours-long wait times.
-3. **Limited Battery Life**: Increase the battery life of the earbuds to at least 30 minutes of continuous use, as some customers experienced battery drain issues.
+* **Noise Cancellation Not Working Properly**: Fix the noise cancellation feature to ensure it works consistently and effectively, addressing complaints such as "Noise cancellation not working properly" and "ANC is too bad. At outside".
+* **Connectivity Issues**: Improve the connectivity feature to reduce the time it takes to connect the earbuds to a device, addressing complaints such as "Its not working , to connect with device it takes hours and hours".
+* **Battery Life**: Increase the battery life of the earbuds to address complaints such as "There is no changing capability it will only 30 mints.. To worest.." and "The battery life easily 3 days, and the fast charging is super convenient" (this is a positive comment, but it highlights the current battery life as a strength).
 
 #### MasterBudsMax Issues to Fix
 
-1. **Muffled Bass in Certain Songs**: Refine the audio processing to prevent muffled bass in songs with overpowering mid-tones.
-2. **Ear Cushion Durability**: Improve the durability of the ear cushions to prevent them from being damaged by external factors, such as ants.
+* **Sound Quality Imbalance**: Adjust the sound quality to balance the bass and mids, addressing complaints such as "Sound quality is good with punchy and deep bass in some songs. However, in some tracks, the mids feel slightly overpowering, which can make the bass feel muffled and almost absent".
+* **Durability**: Improve the durability of the earbuds to address complaints such as "Ear buds cushion ants started eating disappointed".
 
 ### For Marketing Team
 
-#### MasterBuds Messaging Angles to Lean Into
+#### MasterBuds Messaging Angles
 
-1. **Premium Sound Quality**: Emphasize the earbuds' ability to deliver top-notch sound quality, with deep bass and clear calls.
-2. **Convenient Charging**: Highlight the 10-minute quick charge feature, which allows users to get back to their music or calls quickly.
-3. **Comfortable Design**: Showcase the earbuds' comfortable design, which makes them suitable for long hours of use.
-4. **Competitive Pricing**: Position the earbuds as a competitive option in the market, offering premium features at an affordable price.
-5. **Brand Loyalty**: Leverage the brand's reputation for delivering high-quality earbuds, as demonstrated by loyal customers who appreciate the brand's latest collaboration with Bose.
+* **Premium Sound Quality**: Emphasize the high-quality sound experience offered by MasterBuds, highlighting features such as "Superb sound quality, mind-blowing functions, super sound controller, best base quality if you like base".
+* **Convenience**: Highlight the convenience features of MasterBuds, such as "The 10-minute quick charge is ..." and "The battery life easily 3 days, and the fast charging is super convenient".
+* **Design**: Emphasize the sleek and classy design of MasterBuds, highlighting features such as "The design is sle" and "The fit is very comfortable for long hours of use, and the build quality feels premium".
 
-#### MasterBudsMax Messaging Angles to Lean Into
+#### MasterBudsMax Messaging Angles
 
-1. **Premium Audio Experience**: Emphasize the earbuds' ability to deliver a premium, balanced audio experience with clear and adaptive sound.
-2. **Best Features in Price Segment**: Highlight the earbuds' impressive features, which make them stand out in their price segment.
-3. **Crystal-Clear Sound Quality**: Showcase the earbuds' ability to deliver crystal-clear sound quality, perfect for music lovers.
-4. **Build Quality**: Emphasize the earbuds' build quality, which is better than some competitors, such as Sony.
-5. **Competitive Pricing**: Position the earbuds as a competitive option in the market, offering premium features at an affordable price.
+* **Premium Features**: Emphasize the premium features offered by MasterBudsMax, highlighting features such as "This headphone have best features in this price segment".
+* **Balanced Audio Experience**: Highlight the balanced audio experience offered by MasterBudsMax, emphasizing features such as "The sound remains clear and adaptive across all frequencies, providing an immersive listening experience".
+* **Value for Money**: Emphasize the value for money offered by MasterBudsMax, highlighting features such as "Get the sound quality of Bose at 8k" and "Build quality is better than Sony".
 
 ### For Support Team
 
 #### MasterBuds Troubleshooting Guide Topics
 
-1. **Noise Cancellation Issues**: Provide guidance on troubleshooting noise cancellation issues, including resetting the earbuds and checking for software updates.
-2. **Connectivity Issues**: Offer tips on resolving connectivity issues, such as restarting the earbuds and checking for device compatibility.
-3. **Battery Life Issues**: Provide advice on extending battery life, including turning off unnecessary features and using the 10-minute quick charge feature.
-4. **Design-Related Issues**: Address common design-related issues, such as ear cushion damage and earbud fit problems.
-5. **Software-Related Issues**: Offer guidance on resolving software-related issues, including updating the earbuds' firmware and resetting the earbuds to their default settings.
+* **Noise Cancellation Issues**: Create a troubleshooting guide to help customers resolve noise cancellation issues, addressing complaints such as "Noise cancellation not working properly" and "ANC is too bad. At outside".
+* **Connectivity Issues**: Create a troubleshooting guide to help customers resolve connectivity issues, addressing complaints such as "Its not working , to connect with device it takes hours and hours".
+* **Battery Life**: Create a troubleshooting guide to help customers resolve battery life issues, addressing complaints such as "There is no changing capability it will only 30 mints.. To worest.." and "The battery life easily 3 days, and the fast charging is super convenient" (this is a positive comment, but it highlights the current battery life as a strength).
 
 #### MasterBudsMax Troubleshooting Guide Topics
 
-1. **Muffled Bass Issues**: Provide guidance on troubleshooting muffled bass issues, including resetting the earbuds and checking for software updates.
-2. **Ear Cushion Durability**: Offer tips on maintaining ear cushion durability, including cleaning the earbuds regularly and storing them properly.
-3. **Sound Quality Issues**: Address common sound quality issues, such as poor bass response and muffled mid-tones.
-4. **Build Quality Issues**: Provide advice on resolving build quality issues, including checking for physical damage and reporting any defects.
-5. **Software-Related Issues**: Offer guidance on resolving software-related issues, including updating the earbuds' firmware and resetting the earbuds to their default settings.
+* **Sound Quality Imbalance**: Create a troubleshooting guide to help customers resolve sound quality imbalance issues, addressing complaints such as "Sound quality is good with punchy and deep bass in some songs. However, in some tracks, the mids feel slightly overpowering, which can make the bass feel muffled and almost absent".
+* **Durability**: Create a troubleshooting guide to help customers resolve durability issues, addressing complaints such as "Ear buds cushion ants started eating disappointed".
